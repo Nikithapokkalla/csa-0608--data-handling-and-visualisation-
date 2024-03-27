@@ -1,0 +1,22 @@
+# Load required library
+library(ggplot2)
+
+# Create data
+age_groups <- c("0-10", "11-30", "31-50", "51-80")
+dairy <- c(50, 35, 25, 40)
+staple_food <- c(30, 45, 55, 40)
+high_calorie_food <- c(10, 15, 13, 4)
+supplements <- c(10, 5, 7, 16)
+
+# Create dataframe
+data <- data.frame(Age = rep(age_groups, each = 4),
+                   Food_Type = rep(c("Dairy", "Staple Food", "High-Calorie Food", "Supplements"), times = 4),
+                   Daily_Consumption = c(dairy, staple_food, high_calorie_food, supplements))
+
+# Plot histogram
+ggplot(data, aes(x = Daily_Consumption, fill = Food_Type)) +
+  geom_histogram(binwidth = 5, position = "dodge", alpha = 0.7) +
+  labs(title = "Distribution of Daily Consumption of Different Foods",
+       x = "Daily Consumption",
+       y = "Frequency") +
+  scale_fill_manual(values = c("red", "blue", "green", "orange")) # Customizing colors
